@@ -2,35 +2,23 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux'
 import { createStore } from 'redux';
-import Counter from './Counter';
-import './index.css';
+import Counter from './components/Counter';
+import Counter2 from './components/Counter2';
+import reducer from './redux/reducer';
 import reportWebVitals from './reportWebVitals';
 
-const initialState = {
-  count: 0
-};
-
-function reducer(state = initialState, action) {
-  switch (action.type) {
-    case 'INCREMENT':
-      return {
-        count: state.count + 1
-      };
-    case 'DECREMENT':
-      return {
-        count: state.count - 1
-      };
-    default:
-      return state;
-  }
-}
-
+// 1. Buat store
+// 2. Buat reducer
+// 3. Buat action/dispatch --> biasanya pakai mapDispatchToProps
 const store = createStore(reducer)
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
+      {/* // DISPATCH SECARA TIDAK LANGSUNG */}
       <Counter />
+      {/* // DISPATCH SECARA LANGSUNG */}
+      <Counter2 />
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')
